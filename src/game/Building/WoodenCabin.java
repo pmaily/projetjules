@@ -1,12 +1,12 @@
-package Building;
+package game.Building;
 
-import utils.enums.BuildingEnum;
-import utils.enums.ResourceEnum;
+import game.utils.enums.BuildingEnum;
+import game.utils.enums.ResourceEnum;
 
 public class WoodenCabin extends Building{
     public WoodenCabin() {
-        nbrHabitants = 2L;
-        nbrTravailleurs = 2L;
+        nbrHabitants = 0L;
+        nbrTravailleurs = 0L;
         maxHabitants = 2L;
         maxTravailleurs = 2L;
         tempsConstruction = 2L;
@@ -14,10 +14,6 @@ public class WoodenCabin extends Building{
         resourceConstruction.put(ResourceEnum.WOOD, 1L);
         resourceProduction.put(ResourceEnum.WOOD, 2L);
         resourceProduction.put(ResourceEnum.FOOD, 2L);
-    }
-
-    @Override
-    public String getTypeString() {
-        return "Wooden Cabin";
+        consommationResourceConstruction();
     }
 }

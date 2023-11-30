@@ -1,21 +1,22 @@
-package Factory;
+package game.Factory;
 
-import Building.*;
-import Factory.interfaces.BuildingFactory;
-import utils.enums.BuildingEnum;
+import game.Building.*;
+import game.Factory.interfaces.BuildingFactory;
+import game.utils.enums.BuildingEnum;
 /*
-* Cette classe est une fabriaue de Building, implementant l'interface BuildingFactory
-* C'est de cette facon que doit etre implementer le pattern "Factory Method"
+* Cette classe est une fabriaue de game.Building, implementant l'interface BuildingFactory
+* C'est de cette facon que doit etre implementer le pattern "game.Factory Method"
 * La fonction create sera appele dans le prgm pour creer des batiments
 */
 public class BuildingFactoryImpl implements BuildingFactory {
+
 
     //cree une instance Building en fonction du type recu en parametre
     //possible car Farm, House.. heritent de Building
     @Override
     public Building create(BuildingEnum type){
-        Building building = switch( type ) {
-            case BuildingEnum.APPARTMENT_BUILDING -> new ApartmentBuilding();
+        return switch( type ) {
+            case BuildingEnum.APARTMENT_BUILDING -> new ApartmentBuilding();
             case BuildingEnum.FARM -> new Farm();
             case BuildingEnum.HOUSE -> new House();
             case BuildingEnum.LUMBER_MILL -> new LumberMill();
@@ -24,10 +25,7 @@ public class BuildingFactoryImpl implements BuildingFactory {
             case BuildingEnum.TOOL_FACTORY -> new ToolFactory();
             case BuildingEnum.WOODEN_CABIN -> new WoodenCabin();
             case BuildingEnum.CEMENT_PLANT -> new CementPlant();
-            //TODO a tester
-            default -> throw new RuntimeException( "Format " + type.toString() + " not supported" );
+            default -> throw new IllegalArgumentException( "Argument " + type.toString() + " not supported" );
         };
-
-        return building;
     }
 }

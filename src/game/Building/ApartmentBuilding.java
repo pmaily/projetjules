@@ -1,23 +1,19 @@
-package Building;
+package game.Building;
 
-import utils.enums.BuildingEnum;
-import utils.enums.ResourceEnum;
+import game.utils.enums.BuildingEnum;
+import game.utils.enums.ResourceEnum;
 
 public class ApartmentBuilding extends Building{
 
     public ApartmentBuilding(){
-        nbrHabitants = 60L;
+        nbrHabitants = 0L;
         nbrTravailleurs = 0L;
         maxHabitants = 60L;
         maxTravailleurs = 0L;
         tempsConstruction = 6L;
-        type = BuildingEnum.APPARTMENT_BUILDING;
+        type = BuildingEnum.APARTMENT_BUILDING;
         resourceConstruction.put(ResourceEnum.WOOD, 50L);
         resourceConstruction.put(ResourceEnum.STONE, 50L);
-    }
-
-    @Override
-    public String getTypeString() {
-        return "Apartment Building";
+        consommationResourceConstruction();
     }
 }

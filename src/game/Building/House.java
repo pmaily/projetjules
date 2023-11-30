@@ -1,11 +1,11 @@
-package Building;
+package game.Building;
 
-import utils.enums.BuildingEnum;
-import utils.enums.ResourceEnum;
+import game.utils.enums.BuildingEnum;
+import game.utils.enums.ResourceEnum;
 
 public class House extends Building{
     public House() {
-        nbrHabitants = 4L;
+        nbrHabitants = 0L;
         nbrTravailleurs = 0L;
         maxHabitants = 4L;
         maxTravailleurs = 0L;
@@ -13,10 +13,6 @@ public class House extends Building{
         type = BuildingEnum.HOUSE;
         resourceConstruction.put(ResourceEnum.WOOD, 2L);
         resourceConstruction.put(ResourceEnum.STONE, 2L);
-    }
-
-    @Override
-    public String getTypeString() {
-        return "House";
+        consommationResourceConstruction();
     }
 }

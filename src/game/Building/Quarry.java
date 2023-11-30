@@ -1,12 +1,12 @@
-package Building;
+package game.Building;
 
-import utils.enums.BuildingEnum;
-import utils.enums.ResourceEnum;
+import game.utils.enums.BuildingEnum;
+import game.utils.enums.ResourceEnum;
 
 public class Quarry extends Building{
     public Quarry() {
-        nbrHabitants = 2L;
-        nbrTravailleurs = 30L;
+        nbrHabitants = 0L;
+        nbrTravailleurs = 0L;
         maxHabitants = 2L;
         maxTravailleurs = 30L;
         tempsConstruction = 2L;
@@ -15,10 +15,6 @@ public class Quarry extends Building{
         resourceProduction.put(ResourceEnum.STONE, 4L);
         resourceProduction.put(ResourceEnum.IRON, 4L);
         resourceProduction.put(ResourceEnum.COAL, 4L);
-    }
-
-    @Override
-    public String getTypeString() {
-        return "Quarry";
+        consommationResourceConstruction();
     }
 }

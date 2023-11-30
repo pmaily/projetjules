@@ -1,12 +1,12 @@
-package Building;
+package game.Building;
 
-import utils.enums.BuildingEnum;
-import utils.enums.ResourceEnum;
+import game.utils.enums.BuildingEnum;
+import game.utils.enums.ResourceEnum;
 
 public class SteelMill extends Building {
     public SteelMill() {
         nbrHabitants = 0L;
-        nbrTravailleurs = 40L;
+        nbrTravailleurs = 0L;
         maxHabitants = 0L;
         maxTravailleurs = 40L;
         tempsConstruction = 6L;
@@ -16,10 +16,6 @@ public class SteelMill extends Building {
         resourceConsommation.put(ResourceEnum.IRON, 4L);
         resourceConsommation.put(ResourceEnum.COAL, 2L);
         resourceProduction.put(ResourceEnum.STEEL, 4L);
-    }
-
-    @Override
-    public String getTypeString() {
-        return "Steel Mill";
+        consommationResourceConstruction();
     }
 }

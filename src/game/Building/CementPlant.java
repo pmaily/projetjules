@@ -1,12 +1,12 @@
-package Building;
+package game.Building;
 
-import utils.enums.BuildingEnum;
-import utils.enums.ResourceEnum;
+import game.utils.enums.BuildingEnum;
+import game.utils.enums.ResourceEnum;
 
 public class CementPlant extends Building{
     public CementPlant() {
         nbrHabitants = 0L;
-        nbrTravailleurs = 10L;
+        nbrTravailleurs = 0L;
         maxHabitants = 0L;
         maxTravailleurs = 10L;
         tempsConstruction = 4L;
@@ -16,10 +16,6 @@ public class CementPlant extends Building{
         resourceConsommation.put(ResourceEnum.COAL, 4L);
         resourceConstruction.put(ResourceEnum.STONE, 4L);
         resourceProduction.put(ResourceEnum.CEMENT, 4L);
-    }
-
-    @Override
-    public String getTypeString() {
-        return "Cement Plant";
+        consommationResourceConstruction();
     }
 }

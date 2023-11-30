@@ -1,12 +1,12 @@
-package Building;
+package game.Building;
 
-import utils.enums.BuildingEnum;
-import utils.enums.ResourceEnum;
+import game.utils.enums.BuildingEnum;
+import game.utils.enums.ResourceEnum;
 
 public class ToolFactory extends Building{
     public ToolFactory() {
         nbrHabitants = 0L;
-        nbrTravailleurs = 12L;
+        nbrTravailleurs = 0L;
         maxHabitants = 0L;
         maxTravailleurs = 12L;
         tempsConstruction = 8L;
@@ -16,10 +16,6 @@ public class ToolFactory extends Building{
         resourceConsommation.put(ResourceEnum.STEEL, 4L);
         resourceConsommation.put(ResourceEnum.COAL, 4L);
         resourceProduction.put(ResourceEnum.TOOLS, 4L);
-    }
-
-    @Override
-    public String getTypeString() {
-        return "Tool Factory";
+        consommationResourceConstruction();
     }
 }
