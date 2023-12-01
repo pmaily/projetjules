@@ -49,6 +49,7 @@ public class Menu {
         }
         return choix;
     }
+
     /**
      * Cette fonction propose a l'utilisateur les options possibles et enregistre ses choix qui seront
      * envoyes a la fonction executeCommand de la classe manager
@@ -80,6 +81,10 @@ public class Menu {
 
         if (commandType != CommandEnum.CREATE_BUILDING)
         {
+            if (manager.getBuildings().get(buildingType).size() == 0) {
+                System.out.println("Aucun batiment de ce type n'existe.");
+                return;
+            }
             System.out.println("Choisir le numéro du building: ");
             index = demanderChoix(manager.getBuildings().get(buildingType).size()).longValue() - 1;
         }
@@ -94,13 +99,14 @@ public class Menu {
         Map<ResourceEnum, Long> resources = Resources.getInstance().getResources();
 
         while (true) {
-            final Map<BuildingEnum, List<Building>> buildings = manager.getBuildings(); //TODO essayer de voir pour sortir du scope de la boucle vu qu'on a des ref sur les buildings (et pas des copies)
+            final Map<BuildingEnum, List<Building>> buildings = manager.getBuildings();
 
             for (Map.Entry<BuildingEnum, List<Building>> entry : buildings.entrySet()){
                 int i = 1;
                 System.out.println(entry.getKey() + ": ");
                 for(Building building : entry.getValue()) {
-                    System.out.println("\t" + i + "- Nombre d'habitants: " + building.getNbrHabitants() + " | Nombre de travailleurs: " + building.getNbrTravailleurs());
+                    System.out.println("\t" + i + "- Nombre d'habitants: " + building.getNbrHabitants() + " | Nombre de travailleurs: " + building.getNbrTravailleurs() +
+                            (building.isBuilt() ? "" : " | EN CONSTRUCTION"));
                     i++;
                 }
                 if (entry.getValue().isEmpty()) {
@@ -112,6 +118,8 @@ public class Menu {
             for (Map.Entry<ResourceEnum, Long> entry : resources.entrySet()) {
                 System.out.println(entry.getKey() + ": " + entry.getValue());
             }
+
+            System.out.println("Nombre d'habitants a qui donner un travail: " + manager.getNbrHabitantsAffectable());
 
             System.out.println("\n");
 

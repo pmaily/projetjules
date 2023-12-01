@@ -48,7 +48,7 @@ public abstract class Building implements Observer {
      */
     public void addTravailleur(){
         nbrTravailleurs++;
-        if (nbrHabitants > nbrTravailleurs || nbrTravailleurs > maxTravailleurs)
+        if (nbrTravailleurs > maxTravailleurs)
             throw new IllegalStateException("Le nombre de travailleurs est passé au dessus de la limite du batiment, fin du programme.");
     }
 

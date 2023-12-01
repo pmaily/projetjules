@@ -21,6 +21,25 @@ public class Main {
         Menu menu = new Menu(manager);
         Resources.getInstance().addQuantity(ResourceEnum.FOOD, 10L);
         Resources.getInstance().addQuantity(ResourceEnum.WOOD, 10L);
+        System.out.println("""
+		        ---------JEU DE CONSTRUCTION---------
+		        
+		        Regles:
+		        \t- Construire un maximum de batiments sans epuiser les resources
+		        \t- Si une resources tombe en dessous de 0, fin de la partie.
+		        \t- Si vous ajoutez un travailleur a un batiment mais qu'aucun habitant n'est disponible, fin de la partie
+		        
+		        Pour regarder les limites en habitants/travailleurs, les resources de consommation/production/construction, regardez le pdf.
+		        
+		        Pour effectuer une action:
+		        \t1- Choisissez une action
+		        \t2- Choisissez le type de batiment
+		        \t3- Choisissez l'index du batiment (qui est en fonction du type, regardez la liste des batiments pour cela)
+		        
+		        APPUYEZ SUR UNE ENTREE POUR CONTINUER""");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+
         while (true){
             menu.lancerInterfaceUtilisateur();
         }

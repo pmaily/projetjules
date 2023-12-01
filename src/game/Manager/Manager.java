@@ -22,7 +22,6 @@ public class Manager extends Observable {
 
 	Map<BuildingEnum, List<Building>> buildings;
 
-	//TODO ne pas ajouter travailleur si habitant pas dispo
 	/**
 	 * Constructeur de la classe Manager.
 	 */
@@ -36,6 +35,7 @@ public class Manager extends Observable {
 		buildings.put(BuildingEnum.LUMBER_MILL, new ArrayList<>());
 		buildings.put(BuildingEnum.STEEL_MILL, new ArrayList<>());
 		buildings.put(BuildingEnum.WOODEN_CABIN, new ArrayList<>());
+		buildings.put(BuildingEnum.TOOL_FACTORY, new ArrayList<>());
 		buildingFactory = new BuildingFactoryImpl();
 		commandFactory = new CommandFactoryImpl();
 	}
@@ -76,6 +76,8 @@ public class Manager extends Observable {
 	 * @param index Index du building
 	 */
 	public void deleteHabitant(BuildingEnum type, Long index) {
+		if (!getOneBuilding(type, index).isBuilt())
+			throw new IllegalStateException("Vous ne pouvez pas , fin du programme");
 		getOneBuilding(type, index).deleteHabitant();
 	}
 
@@ -85,6 +87,8 @@ public class Manager extends Observable {
 	 * @param index Index du building
 	 */
 	public void addTravailleur(BuildingEnum type, Long index) {
+		if (getNbrHabitantsAffectable() <= 0)
+			throw new IllegalStateException("Vous avez rajouter un travailleur dans un batiment alors qu'il n'y a plus d'habitant disponible, fin du programme");
 		getOneBuilding(type, index).addTravailleur();
 	}
 
@@ -125,6 +129,23 @@ public class Manager extends Observable {
 		Command command = commandFactory.create(commandType, buildingType, index, this);
 		command.execute();
 		newDay();
+	}
+
+	/**
+	 * @return Le nombre d'habitants sans travail
+	 */
+	public Long getNbrHabitantsAffectable() {
+		Long totalHabitants = 0L;
+		Long totalTravailleurs = 0L;
+
+		for (Map.Entry<BuildingEnum, List<Building>> buildingsByType : buildings.entrySet()) {
+			for (Building building : buildingsByType.getValue()) {
+				totalHabitants += building.getNbrHabitants();
+				totalTravailleurs += building.getNbrTravailleurs();
+			}
+		}
+
+		return totalHabitants - totalTravailleurs;
 	}
 
 	/**

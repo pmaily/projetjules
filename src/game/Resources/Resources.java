@@ -61,15 +61,6 @@ public final class Resources { //final pour que la classe ne soit pas heritee
     }
 
     /**
-     * Getter de la quantite d'une resource precise "type".
-     * @param type le type de resource dont on souhaite recuperer la quantite
-     * @return quantite de la resource type
-     */
-    public Long getQuantity(ResourceEnum type) { //TODO voir si encore utile
-        return resources.get(type);
-    }
-
-    /**
      * Getter de la propriété resources.
      * @return resources
      */
