@@ -9,6 +9,13 @@ public class DeleteBuildingCommand implements Command {
 	BuildingEnum type;
 	Long index;
 
+
+	/**
+	 * Constructeur de la classe DeleteBuildingCommand
+	 * @param manager Manager qui executera deleteBuilding()
+	 * @param type type de Building pour deleteBuilding()
+	 * @param index index du Building pour deleteBuilding()
+	 */
 	public DeleteBuildingCommand(Manager manager, BuildingEnum type, Long index) {
 		this.manager = manager;
 		this.type = type;

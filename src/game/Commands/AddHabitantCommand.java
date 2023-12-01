@@ -11,6 +11,12 @@ public class AddHabitantCommand implements Command {
 	BuildingEnum type;
 	Long index;
 
+	/**
+	 * Constructeur de la classe AddHabitantCommand
+	 * @param manager Manager qui executera addHabitant()
+	 * @param type type de Building pour addHabitant()
+	 * @param index index du Building pour addHabitant()
+	 */
 	public AddHabitantCommand(Manager manager, BuildingEnum type, Long index) {
 		this.manager = manager;
 		this.type = type;

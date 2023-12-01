@@ -18,12 +18,41 @@ public class Menu {
     Manager manager;
     Scanner scanner;
 
-
+    /**
+     * Constructeur de la classe Menu
+     * @param manager
+     */
     public Menu(Manager manager){
         this.manager = manager;
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Demande un nombre a l'utilisateur jusqu'a ce qu'il soit compris entre 0 et size
+     * @param size input max possible pour l'utilisateur
+     * @return input de l'utilisateur
+     */
+    private Integer demanderChoix(int size) {
+        Integer choix = null;
+        while (choix == null) {
+            System.out.print("Choix: ");
+            try {
+                choix = Integer.parseInt(scanner.next());
+                if (choix < 1 || choix > size) {
+                    throw new NumberFormatException();
+                }
+            }
+            catch (NumberFormatException e){
+                System.out.println("\tChoix invalide, veuillez recommencer.");
+                choix = null;
+            }
+        }
+        return choix;
+    }
+    /**
+     * Cette fonction propose a l'utilisateur les options possibles et enregistre ses choix qui seront
+     * envoyes a la fonction executeCommand de la classe manager
+     */
     private void choisirAction() {
         List<BuildingEnum> buildingEnums = List.of(BuildingEnum.values());
         List<CommandEnum> commandEnums = List.of(CommandEnum.values());
@@ -33,34 +62,34 @@ public class Menu {
         int i = 1;
 
         System.out.println("Choisir une action: ");
-        for (CommandEnum commandEnum : commandEnums) {
+        for (CommandEnum commandEnum : commandEnums) { //ici on affiche la liste des commandes disponibles
             System.out.println("\t" + i + "- " + commandEnum);
             i++;
         }
         i = 1;
-        System.out.print("Choix: ");
-        Integer choix = Integer.parseInt(scanner.next());
-        commandType = commandEnums.get(choix - 1);
+
+        commandType = commandEnums.get(demanderChoix(commandEnums.size()) - 1);
 
         System.out.println("Choisir le type de building: ");
         for (BuildingEnum buildingEnum : buildingEnums) {
             System.out.println("\t" + i + "- " + buildingEnum);
             i++;
         }
-        System.out.print("Choix: ");
-        choix = Integer.parseInt(scanner.next());
-        buildingType = buildingEnums.get(choix - 1);
+
+        buildingType = buildingEnums.get(demanderChoix(buildingEnums.size()) - 1);
 
         if (commandType != CommandEnum.CREATE_BUILDING)
         {
-            System.out.print("Choix: ");
             System.out.println("Choisir le numéro du building: ");
-            index = Long.parseLong(scanner.next()) - 1;
+            index = demanderChoix(manager.getBuildings().get(buildingType).size()).longValue() - 1;
         }
-
         manager.executeCommand(commandType, buildingType, index);
     }
 
+    /**
+     * Cette fonction lance l'interface utilisateur en presentant les resources disponibles et les batiments
+     * puis lance la fonction choisrAction pour intergir avec l'utilisateur
+     */
     public void lancerInterfaceUtilisateur() {
         Map<ResourceEnum, Long> resources = Resources.getInstance().getResources();
 

@@ -22,14 +22,7 @@ import game.Manager.Manager;
 import game.utils.enums.BuildingEnum;
 import game.utils.enums.CommandEnum;
 
-/*
-* Cette classe est une fabriaue de game.Building, implementant l'interface BuildingFactory
-* C'est de cette facon que doit etre implementer le pattern "game.Factory Method"
-* La fonction create sera appele dans le prgm pour creer des batiments
-*/
 public class CommandFactoryImpl implements CommandFactory {
-    //cree une instance Building en fonction du type recu en parametre
-    //possible car Farm, House.. heritent de Building
     @Override
     public Command create(CommandEnum commandType, BuildingEnum buildingType, Long index, Manager manager) throws IllegalArgumentException{
         return switch( commandType ) {
@@ -39,7 +32,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case CommandEnum.DELETE_TRAVAILLEUR -> new DeleteTravailleurCommand(manager, buildingType, index);
             case CommandEnum.CREATE_BUILDING -> new CreateBuildingCommand(manager, buildingType);
             case CommandEnum.DELETE_BUILDING -> new DeleteBuildingCommand(manager, buildingType, index);
-            default -> throw new IllegalArgumentException( "Argument " + commandType.toString() + " not supported" );
+            default -> throw new IllegalArgumentException( "Argument " + commandType + " not supported" );
         };
     }
 }

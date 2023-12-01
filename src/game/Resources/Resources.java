@@ -26,6 +26,10 @@ public final class Resources { //final pour que la classe ne soit pas heritee
         resources.put(ResourceEnum.WOOD, 0L);
     }
 
+    /**
+     * Getter de instance
+     * @return instance
+     */
     public static Resources getInstance() {
         if (instance == null) {
             instance = new Resources(); //ici on garanti que "instance" n'est instanciee qu'une seule fois
@@ -33,11 +37,22 @@ public final class Resources { //final pour que la classe ne soit pas heritee
         return instance;
     }
 
+    /**
+     * Permet d'ajouter d'augmenter le nombre de resources "type".
+     * @param type la resource qu'on veut augmenter
+     * @param amount le total a augmenter
+     */
     public void addQuantity(ResourceEnum type, Long amount){
         Long newAmount = resources.get(type) + amount;
         resources.put(type, newAmount);
     }
 
+    /**
+     * Permet de reduire le nombre de resources "type".
+     * @param type la resource qu'on veut reduire
+     * @param amount le total a reduire
+     * @throws IllegalStateException si la resource "type" passe en dessous de 0
+     */
     public void reduceQuantity(ResourceEnum type, Long amount){
         Long newAmount = resources.get(type) - amount;
         if (newAmount < 0)
@@ -45,13 +60,17 @@ public final class Resources { //final pour que la classe ne soit pas heritee
         resources.put(type, newAmount);
     }
 
-    public Long getQuantity(ResourceEnum type) {
+    /**
+     * Getter de la quantite d'une resource precise "type".
+     * @param type le type de resource dont on souhaite recuperer la quantite
+     * @return quantite de la resource type
+     */
+    public Long getQuantity(ResourceEnum type) { //TODO voir si encore utile
         return resources.get(type);
     }
 
     /**
      * Getter de la propriété resources.
-     *
      * @return resources
      */
     public Map<ResourceEnum, Long> getResources() {

@@ -10,6 +10,11 @@ public class CreateBuildingCommand implements Command {
 	Manager manager;
 	BuildingEnum type;
 
+	/**
+	 * Constructeur de la classe CreateBuildingCommand()
+	 * @param manager Manager qui executera createBuilding()
+	 * @param type type de Building pour createBuilding()
+	 */
 	public CreateBuildingCommand(Manager manager, BuildingEnum type) {
 		this.manager = manager;
 		this.type = type;

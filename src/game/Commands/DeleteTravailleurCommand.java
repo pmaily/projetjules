@@ -11,6 +11,12 @@ public class DeleteTravailleurCommand implements Command {
 	BuildingEnum type;
 	Long index;
 
+	/**
+	 * Constructeur de la classe DeleteTravailleurCommand
+	 * @param manager Manager qui executera deleteTravailleur()
+	 * @param type type de Building pour deleteTravailleur()
+	 * @param index index du Building pour deleteTravailleur()
+	 */
 	public DeleteTravailleurCommand(Manager manager, BuildingEnum type, Long index) {
 		this.manager = manager;
 		this.type = type;
