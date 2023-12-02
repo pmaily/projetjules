@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-public abstract class Building implements Observer {
+public abstract class Building implements Observer { //On implemente l'interface Observer pour le design pattern Observer
 
     protected BuildingEnum type;
     protected Long nbrHabitants;
@@ -87,7 +87,7 @@ public abstract class Building implements Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg){
+    public void update(Observable o, Object arg){ //On override update (de l'interface observer) qui sera execute a chaque changement d'etat d'un "Observable observé" (voir Manager)
         tempsDepuisConstruction++;
         if (!isBuilt())
             return;

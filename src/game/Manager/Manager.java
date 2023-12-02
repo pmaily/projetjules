@@ -85,6 +85,7 @@ public class Manager extends Observable {
 	 * Ajoute un travailleur
 	 * @param type Type de building
 	 * @param index Index du building
+	 * @throws IllegalStateException si il n' y a pas d'habitant disponible
 	 */
 	public void addTravailleur(BuildingEnum type, Long index) {
 		if (getNbrHabitantsAffectable() <= 0)
@@ -111,12 +112,13 @@ public class Manager extends Observable {
 	 */
 	private Building getOneBuilding(BuildingEnum type, Long index) {
 		return buildings.get(type).get(index.intValue());
+
 	}
 
 	/**
 	 * Notifie tous les Observer (buildings) d'un changement (nouvele journee)
 	 */
-	private void newDay() {
+	private void newDay() { //respecte le design pattern Observer
 		setChanged();
 		this.notifyObservers();
 	}

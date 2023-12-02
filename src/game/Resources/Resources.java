@@ -55,7 +55,7 @@ public final class Resources { //final pour que la classe ne soit pas heritee
 	 *
 	 * @param type   la resource qu'on veut reduire
 	 * @param amount le total a reduire
-	 * @throws IllegalStateException si la resource "type" passe en dessous de 0
+	 * @throws RuntimeException si la resource "type" passe en dessous de 0
 	 */
 	public void reduceQuantity(ResourceEnum type, Long amount) {
 		Long newAmount = resources.get(type) - amount;

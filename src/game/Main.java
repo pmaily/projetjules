@@ -14,8 +14,9 @@ public class Main {
 	public static void main(String[] args) {
 		Manager manager = new Manager();
 		Menu menu = new Menu(manager);
-		Resources.getInstance().addQuantity(ResourceEnum.FOOD, 10L);
+		Resources.getInstance().addQuantity(ResourceEnum.FOOD, 10L); //On ajoute les resources de base
 		Resources.getInstance().addQuantity(ResourceEnum.WOOD, 10L);
+		Resources.getInstance().addQuantity(ResourceEnum.STONE, 10L);
 		System.out.println("""
 				---------JEU DE CONSTRUCTION---------
 				        

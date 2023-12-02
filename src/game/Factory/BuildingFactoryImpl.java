@@ -13,7 +13,7 @@ import game.Building.WoodenCabin;
 import game.Factory.interfaces.BuildingFactory;
 import game.utils.enums.BuildingEnum;
 
-/*
+/**
  * Cette classe est une fabriaue de game.Building, implementant l'interface BuildingFactory
  * C'est de cette facon que doit etre implementer le pattern "game.Factory Method"
  * La fonction create sera appele dans le prgm pour creer des batiments
