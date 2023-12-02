@@ -6,66 +6,71 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
-* Cette classe suit le pattern Singleton, qui permet de garantir l'exisence unique des Resources, associe a une quantite
-*/
+ * Cette classe suit le pattern Singleton, qui permet de garantir l'exisence unique des Resources, associe a une quantite
+ */
 public final class Resources { //final pour que la classe ne soit pas heritee
 
-    private static Resources instance = null; //static fait que ce sera l'unique instance game.Resource existante du programme
-    private Map<ResourceEnum, Long> resources;
+	private static Resources instance = null; //static fait que ce sera l'unique instance game.Resource existante du programme
 
-    private Resources() { //private pour garantir que le constructeur ne peut etre utilise que dans la fonction getInstance
-        resources = new HashMap<>();
-        resources.put(ResourceEnum.COAL, 0L);
-        resources.put(ResourceEnum.FOOD, 0L);
-        resources.put(ResourceEnum.IRON, 0L);
-        resources.put(ResourceEnum.CEMENT, 0L);
-        resources.put(ResourceEnum.LUMBER, 0L);
-        resources.put(ResourceEnum.STEEL, 0L);
-        resources.put(ResourceEnum.STONE, 0L);
-        resources.put(ResourceEnum.TOOLS, 0L);
-        resources.put(ResourceEnum.WOOD, 0L);
-    }
+	private Map<ResourceEnum, Long> resources;
 
-    /**
-     * Getter de instance
-     * @return instance
-     */
-    public static Resources getInstance() {
-        if (instance == null) {
-            instance = new Resources(); //ici on garanti que "instance" n'est instanciee qu'une seule fois
-        }
-        return instance;
-    }
+	private Resources() { //private pour garantir que le constructeur ne peut etre utilise que dans la fonction getInstance
+		resources = new HashMap<>();
+		resources.put(ResourceEnum.COAL, 0L);
+		resources.put(ResourceEnum.FOOD, 0L);
+		resources.put(ResourceEnum.IRON, 0L);
+		resources.put(ResourceEnum.CEMENT, 0L);
+		resources.put(ResourceEnum.LUMBER, 0L);
+		resources.put(ResourceEnum.STEEL, 0L);
+		resources.put(ResourceEnum.STONE, 0L);
+		resources.put(ResourceEnum.TOOLS, 0L);
+		resources.put(ResourceEnum.WOOD, 0L);
+	}
 
-    /**
-     * Permet d'ajouter d'augmenter le nombre de resources "type".
-     * @param type la resource qu'on veut augmenter
-     * @param amount le total a augmenter
-     */
-    public void addQuantity(ResourceEnum type, Long amount){
-        Long newAmount = resources.get(type) + amount;
-        resources.put(type, newAmount);
-    }
+	/**
+	 * Getter de instance
+	 *
+	 * @return instance
+	 */
+	public static Resources getInstance() {
+		if (instance == null) {
+			instance = new Resources(); //ici on garanti que "instance" n'est instanciee qu'une seule fois
+		}
+		return instance;
+	}
 
-    /**
-     * Permet de reduire le nombre de resources "type".
-     * @param type la resource qu'on veut reduire
-     * @param amount le total a reduire
-     * @throws IllegalStateException si la resource "type" passe en dessous de 0
-     */
-    public void reduceQuantity(ResourceEnum type, Long amount){
-        Long newAmount = resources.get(type) - amount;
-        if (newAmount < 0)
-            throw new IllegalStateException("Il n'y a plus assez de " + type + ", fin du programme.");
-        resources.put(type, newAmount);
-    }
+	/**
+	 * Permet d'ajouter d'augmenter le nombre de resources "type".
+	 *
+	 * @param type   la resource qu'on veut augmenter
+	 * @param amount le total a augmenter
+	 */
+	public void addQuantity(ResourceEnum type, Long amount) {
+		Long newAmount = resources.get(type) + amount;
+		resources.put(type, newAmount);
+	}
 
-    /**
-     * Getter de la propriété resources.
-     * @return resources
-     */
-    public Map<ResourceEnum, Long> getResources() {
-        return resources;
-    }
+	/**
+	 * Permet de reduire le nombre de resources "type".
+	 *
+	 * @param type   la resource qu'on veut reduire
+	 * @param amount le total a reduire
+	 * @throws IllegalStateException si la resource "type" passe en dessous de 0
+	 */
+	public void reduceQuantity(ResourceEnum type, Long amount) {
+		Long newAmount = resources.get(type) - amount;
+		if (newAmount < 0)
+			throw new RuntimeException("Il n'y a plus assez de " + type + ", fin du programme.");
+		resources.put(type, newAmount);
+	}
+
+	/**
+	 * Getter de la propriété resources.
+	 *
+	 * @return resources
+	 */
+	public Map<ResourceEnum, Long> getResources() {
+		return resources;
+	}
 }
 

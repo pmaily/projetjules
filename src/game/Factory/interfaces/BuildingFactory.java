@@ -7,6 +7,7 @@ public interface BuildingFactory {
 
     /**
      * Cree un Building
+     *
      * @param type Building a creer
      * @return Building
      */

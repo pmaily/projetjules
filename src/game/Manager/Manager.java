@@ -68,6 +68,7 @@ public class Manager extends Observable {
 	 */
 	public void addHabitant(BuildingEnum type, Long index) {
 		getOneBuilding(type, index).addHabitant();
+		newDay();
 	}
 
 	/**
@@ -76,9 +77,8 @@ public class Manager extends Observable {
 	 * @param index Index du building
 	 */
 	public void deleteHabitant(BuildingEnum type, Long index) {
-		if (!getOneBuilding(type, index).isBuilt())
-			throw new IllegalStateException("Vous ne pouvez pas , fin du programme");
 		getOneBuilding(type, index).deleteHabitant();
+		newDay();
 	}
 
 	/**
@@ -88,8 +88,9 @@ public class Manager extends Observable {
 	 */
 	public void addTravailleur(BuildingEnum type, Long index) {
 		if (getNbrHabitantsAffectable() <= 0)
-			throw new IllegalStateException("Vous avez rajouter un travailleur dans un batiment alors qu'il n'y a plus d'habitant disponible, fin du programme");
+			throw new IllegalStateException("Vous rajoutez un travailleur dans un batiment alors qu'il n'y a plus d'habitant disponible");
 		getOneBuilding(type, index).addTravailleur();
+		newDay();
 	}
 
 	/**
@@ -99,6 +100,7 @@ public class Manager extends Observable {
 	 */
 	public void deleteTravailleur(BuildingEnum type, Long index) {
 		getOneBuilding(type, index).deleteTravailleur();
+		newDay();
 	}
 
 	/**
@@ -128,7 +130,6 @@ public class Manager extends Observable {
 	public void executeCommand(CommandEnum commandType, BuildingEnum buildingType, Long index) {
 		Command command = commandFactory.create(commandType, buildingType, index, this);
 		command.execute();
-		newDay();
 	}
 
 	/**

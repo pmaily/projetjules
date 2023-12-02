@@ -37,9 +37,9 @@ public abstract class Building implements Observer {
      * @throws IllegalStateException si le nombre d'habitants depasse maxHabitants
      */
     public void addHabitant(){
+        if (nbrHabitants >= maxHabitants)
+            throw new IllegalStateException("Le nombre d'habitants est deja au maximum pour ce batiment.");
         nbrHabitants++;
-        if (nbrHabitants > maxHabitants)
-            throw new IllegalStateException("Le nombre d'habitants est passé au dessus de la limite du batiment, fin du programme.");
     }
 
     /**
@@ -47,9 +47,9 @@ public abstract class Building implements Observer {
      * @throws IllegalStateException si le nombre de travailleurs depasse maxTravailleurs
      */
     public void addTravailleur(){
+        if (nbrTravailleurs >= maxTravailleurs)
+            throw new IllegalStateException("Le nombre de travailleurs est deja au maximum pour ce batiment.");
         nbrTravailleurs++;
-        if (nbrTravailleurs > maxTravailleurs)
-            throw new IllegalStateException("Le nombre de travailleurs est passé au dessus de la limite du batiment, fin du programme.");
     }
 
     /**
@@ -57,9 +57,9 @@ public abstract class Building implements Observer {
      * @throws IllegalStateException si le nombre d'habitants passe en dessous de zero
      */
     public void deleteHabitant(){
+        if (nbrHabitants <= 0)
+            throw new IllegalStateException("Le nombre d'habitants est de 0, vous ne pouvez pas en retirer.");
         nbrHabitants--;
-        if (nbrHabitants < 0)
-            throw new IllegalStateException("Le nombre d'habitants est passé en dessous de 0, fin du programme.");
     }
 
     /**
@@ -67,9 +67,9 @@ public abstract class Building implements Observer {
      * @throws IllegalStateException si le nombre de travailleurs passe en dessous de zero
      */
     public void deleteTravailleur(){
+        if (nbrHabitants <= 0)
+            throw new IllegalStateException("Le nombre de travailleurs est de 0, vous ne pouvez pas en retirer.");
         nbrTravailleurs--;
-        if (nbrHabitants < 0)
-            throw new IllegalStateException("Le nombre de travailleurs est passé en dessous de 0, fin du programme.");
     }
 
     /**
